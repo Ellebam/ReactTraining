@@ -6,7 +6,13 @@ const VideoList = ({ videos, onVideoSelect }) => {
   //call props.videos all the time!
 
   const renderedList = videos.map((video) => {
-    return <VideoItem video={video} onVideoSelect={onVideoSelect} />;
+    return (
+      <VideoItem
+        key={video.id.videoId}
+        video={video}
+        onVideoSelect={onVideoSelect}
+      />
+    );
   });
   return <div className='ui relaxed divided list'>{renderedList}</div>;
 };
