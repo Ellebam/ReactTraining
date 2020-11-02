@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './Dropdown.css';
 
-const Dropdown = ({ options, selected, onSelectedChange }) => {
+const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
 
   const ref = useRef();
@@ -29,8 +28,6 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
         className='item'
         onClick={() => {
           onSelectedChange(option);
-
-          console.log(selected.value);
         }}
       >
         {' '}
@@ -42,7 +39,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   return (
     <div ref={ref} className='ui form'>
       <div className='field'>
-        <label className='label'>Select a Color</label>
+        <label className='label'>{label}</label>
         <div
           onClick={() => setOpen(!open)}
           className={`ui selection dropdown ${open ? 'visible active' : ''} `}
@@ -52,12 +49,6 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
           <div className={`menu ${open ? 'visible transition' : ''} `}>
             {renderedOptions}
           </div>
-        </div>
-        <div className='ui container segment raised'>
-          <p className={`special-thing ${selected.value}`}>
-            {' '}
-            This text changes color
-          </p>
         </div>
       </div>
     </div>

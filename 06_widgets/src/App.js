@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Accordion from './components/Accordion';
+import ColoredLabel from './components/ColoredLabel';
 import Dropdown from './components/Dropdown';
 import Search from './components/Search';
+import Translate from './components/Translate';
+import Route from './components/Route';
+import Header from './components/Header';
 
 const items = [
   {
@@ -39,11 +43,27 @@ export default () => {
 
   return (
     <div>
-      <Dropdown
-        selected={selected}
-        onSelectedChange={setSelected}
-        options={options}
-      />
+      <Header />
+      <Route path='/'>
+        <Accordion items={items} />
+      </Route>
+      <Route path='/list'>
+        <Search />
+      </Route>
+
+      <Route path='/dropdown'>
+        <Dropdown
+          label='select a color'
+          options={options}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
+        <ColoredLabel selected={selected} />
+      </Route>
+
+      <Route path='/translate'>
+        <Translate />
+      </Route>
     </div>
   );
 };
