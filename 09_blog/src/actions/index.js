@@ -8,8 +8,7 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   //the following line makes use of lodashs own map function which can search
   // for unique entries through the usage of the _.uniq function
   const userIds = _.uniq(_.map(getState().posts, 'userId'));
-
-  console.log(userIds);
+  userIds.forEach((id) => dispatch(fetchUser(id)));
 };
 
 export const fetchPosts = () => {
